@@ -29,16 +29,16 @@ resource "aws_instance" "instance" {
 }
 
 resource "null_resource" "provisioner" {
-    provisioner "remote-exec" {
-       connection {
-         host = aws_instance.instance.public_ip
-         user = "root"
-         password = "DevOps321"
-       }
+  provisioner "remote-exec" {
+    connection {
+      host = aws_instance.instance.public_ip
+      user = "root"
+      password = "DevOps321"
+    }
 
-       inline = [ 
-         "ansible-pull -i localhost, -U https://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@github.com/yashwanthk147/ansible-roboshop.git roboshop.yml -e role_name=${var.component}"
-       ]
+    inline = [ 
+      "ansible-pull -i localhost, -U https://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@github.com/yashwanthk147/ansible-roboshop.git roboshop.yml -e role_name=${var.component}"
+    ]
       
     }
     
