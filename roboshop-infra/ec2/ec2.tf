@@ -77,7 +77,7 @@ resource "aws_security_group" "allow_tls" {
 
 resource "aws_route53_record" "record" {
     zone_id = "Z07897561J3VF42BTNNBR"
-    name = "${var.component}-dev-devops.online"
+    name = "${var.component}-dev.devopsb71.online"
     type = "A"
     ttl = 30
     records =  [aws_instance.instance.private_ip] 
