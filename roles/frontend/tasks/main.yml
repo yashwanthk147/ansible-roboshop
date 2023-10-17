@@ -23,7 +23,7 @@
 - name: Copy file with owner and permissions
   ansible.builtin.copy:
     src: roboshop.conf
-    dest: /etc/foo.conf/etc/nginx/default.d/roboshop.conf 
+    dest: /etc/nginx/default.d/roboshop.conf 
 
 - name: Start service Nginx
   ansible.builtin.service:
