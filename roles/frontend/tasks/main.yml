@@ -12,9 +12,21 @@
   ansible.builtin.file:
     path: /usr/share/nginx/hmtl
     state: directory
-    
+
 - name: Download and Extract frontend content
   ansible.builtin.unarchive:
     src: https://roboshop-artifacts.s3.amazonaws.com/frontend.zip 
     dest: /usr/share/nginx/hmtl
     remote_src: yes
+
+
+- name: Copy file with owner and permissions
+  ansible.builtin.copy:
+    src: roboshop.conf
+    dest: /etc/foo.conf/etc/nginx/default.d/roboshop.conf 
+
+- name: Start service Nginx
+  ansible.builtin.service:
+    name: nginx
+    state: restarted
+    enabled: yes
