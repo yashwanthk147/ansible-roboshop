@@ -1,6 +1,6 @@
 - name: Setup the Mysql repo
   ansible.builtin.copy:
-    src: moysql.repo
+    src: mysql.repo
     dest: /etc/yum.repos.d/mysql.repo
 
 - name: Disable mysql module
