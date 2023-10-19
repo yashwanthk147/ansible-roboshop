@@ -1,3 +1,4 @@
 - name: Print catalogue
   ansible.builtin.debug:
     msg: catalogue
+
