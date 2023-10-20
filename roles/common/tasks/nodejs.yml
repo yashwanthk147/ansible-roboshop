@@ -15,35 +15,12 @@
   community.general.npm:
     path: /app
 
-- name: app prereq
+- name: schema setup
   ansible.builtin.import_tasks:
     file: schema-setup.yml
   when: schema_type is defined
 
-We need to setup a new service in systemd so systemctl can manage this service
-
-INFO
-We already discussed in linux basics that advantages of systemctl managing services, Hence we are taking that approach. Which is also a standard way in the OS.
-
-Setup SystemD Cart Service
-
-/etc/systemd/system/cart.service
-
-
-[Install]
-WantedBy=multi-user.target
-
-RECAP
-You can create file by using vim /etc/systemd/system/cart.service
-
-Load the service.
-
-systemctl daemon-reload
-
-INFO
-This above command is because we added a new service, We are telling systemd to reload so it will detect new service.
-
-Start the service.
-
-systemctl enable cart 
-systemctl start cart
+- name: systemd setup
+  ansible.builtin.import_tasks:
+    file: systemd-setup.yml
+  
