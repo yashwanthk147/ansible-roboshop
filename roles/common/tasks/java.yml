@@ -1,9 +1,6 @@
-- name: config nodejs repos 
-  ansible.builtin.shell: curl -sL https://rpm.nodesource.com/setup_lts.x | bash
-
-- name: Install Nodejs
+- name: Install Maven
   ansible.builtin.yum: 
-    name: nodejs
+    name: maven
     state: installed
 
 # now you are in this task and import another task
@@ -11,9 +8,11 @@
   ansible.builtin.import_tasks:
     file: app-prereq.yml
 
-- name: Install Nodejs dependencies package.json.
-  community.general.npm:
-    path: /app
+#change working to someothr dir and executing the command use args
+- name: Install Maven dependencies
+  ansible.builtin.shell: mvn clean package; mv target/{{component}}-1.0.jar {{component}}.jar 
+  args:
+    chdir: /app
 
 - name: schema setup
   ansible.builtin.import_tasks:
