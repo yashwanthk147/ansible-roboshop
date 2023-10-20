@@ -1,0 +1,28 @@
+#you want to group a tasks temporarly then you go for blocks
+- name: Mongodb schema 
+  when: schema_type == "mongo"
+  block: 
+    - name: setup MongoDB repo file
+      ansible.builtin.copy:
+        src: mongodb.repo
+        dest: /etc/systemd/system/mongo.repo
+
+    - name: Install Mongodb client
+      ansible.builtin.yum:
+        name: mongodb-org-shell
+        state: installed
+
+    - name: Load schema
+      ansible.builtin.shell: mongo --host mongodb-dev.devopsb71.online </app/schema/catalogue.js
+
+- name: Mysql schema 
+  when: schema_type == "mysql"
+  block: 
+    - name: Install Mysql client 
+      ansible.builtin.yum:
+        name: mysql
+        state: installed
+
+    - name: Load schema
+      ansible.builtin.shell: mysql -h mysql-dev.devopsb71.online -uroot -pRoboShop@1 < /app/schema/{{component}}.sql 
+        
