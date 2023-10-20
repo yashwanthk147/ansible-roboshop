@@ -1,0 +1,5 @@
+#import the role from another role
+- name: Load Nodejs
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: python
