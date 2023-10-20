@@ -1,0 +1,6 @@
+- name: fetch parameters with ansible using terraform with aws_ssm 
+  hosts: localhost
+  tasks:
+    - name: Print test value
+      ansible.builtin.debug:
+        msg: "{{ lookup('amazon.aws.aws_ssm', 'test') }}"
