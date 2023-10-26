@@ -1,8 +1,3 @@
-terraform {
-    backend "s3" {}
-}
-
-
 resource "aws_ssm_parameter" "parameter" {
   count = length(var.parameters)
   name  = var.parameters[count.index].name
