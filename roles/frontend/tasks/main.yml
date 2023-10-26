@@ -9,7 +9,7 @@
     state: absent
 
 - name: Create a directory if it does not exist
-  ansible.builtin.template:
+  ansible.builtin.file:
     path: /usr/share/nginx/hmtl
     state: directory
 
@@ -21,7 +21,7 @@
 
 
 - name: Copy file with owner and permissions
-  ansible.builtin.copy:
+  ansible.builtin.template:
     src: roboshop.conf
     dest: /etc/nginx/default.d/nginx-roboshop.conf 
 
